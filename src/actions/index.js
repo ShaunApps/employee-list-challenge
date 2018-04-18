@@ -9,10 +9,9 @@ function requestUsers() {
 
 export const RECEIVE_USERS = "RECEIVE_USERS";
 function receiveUsers(json) {
-  console.log(json);
   return {
-    type: RECEIVE_USERS
-    // TODO: handle incoming data
+    type: RECEIVE_USERS,
+    users: json
   };
 }
 
@@ -24,6 +23,23 @@ export const fetchUsers = () => {
         response => response.json(),
         error => console.log("An error occured.", error)
       )
-      .then(json => dispatch(receiveUsers(json)));
+      .then(json => dispatch(receiveUsers(json)))
+      .then(json => dispatch(sortByLastName(json)));
   };
 };
+
+export const SORT_BY_LAST_NAME = "SORT_BY_LAST_NAME";
+function sortByLastName(json) {
+  console.log("action sorted: " + json.data);
+  return {
+    type: SORT_BY_LAST_NAME,
+    users: json
+  };
+}
+
+export const SORT_BY_CITY = "SORT_BY_CITY";
+export function sortByCity() {
+  return {
+    type: SORT_BY_CITY
+  };
+}
