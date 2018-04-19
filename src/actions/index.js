@@ -35,9 +35,37 @@ export function sortByLastName() {
   };
 }
 
-export const SORT_BY_CITY = "SORT_BY_CITY";
-export function sortByCity() {
+export const FILTER_BY_CITY = "FILTER_BY_CITY";
+export function filterByCity(city) {
   return {
-    type: SORT_BY_CITY
+    type: FILTER_BY_CITY,
+    city: city
   };
 }
+
+export const REQUEST_USER = "REQUEST_USER";
+function requestUser() {
+  return {
+    type: REQUEST_USER
+  };
+}
+
+export const RECEIVE_USER = "RECEIVE_USER";
+function receiveUser(json) {
+  return {
+    type: RECEIVE_USER,
+    user: json
+  };
+}
+
+export const fetchUser = id => {
+  return function(dispatch) {
+    dispatch(requestUser());
+    return fetch(`${starAPI}/${id}`)
+      .then(
+        response => response.json(),
+        error => console.log("An error occured.", error)
+      )
+      .then(json => dispatch(receiveUser(json)));
+  };
+};

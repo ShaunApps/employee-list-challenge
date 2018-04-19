@@ -4,7 +4,31 @@ import { withStyles } from "material-ui/styles";
 import Grid from "material-ui/Grid";
 
 import ProfileCard from "./userProfileCard";
-const styles = theme => ({});
+const styles = theme => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    justify: "center",
+    alignItems: "flex-start"
+  },
+  profiles: {
+    direction: "row",
+    justify: "flex-start",
+    flexGrow: 1
+  },
+  letter: {
+    margin: 5,
+    fontSize: 12
+  },
+  letterSection: {
+    marginBottom: 100
+  },
+  profileCards: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap"
+  }
+});
 
 function renderSortedProfileCards(users) {
   return Object.keys(users).map(user => {
@@ -14,6 +38,7 @@ function renderSortedProfileCards(users) {
     return (
       <ProfileCard
         key={id}
+        id={id}
         firstName={firstName}
         lastName={lastName}
         address={address}
@@ -29,10 +54,12 @@ function SectionProfile(props) {
   const { classes } = props;
   const { letter, users } = props;
   return (
-    <Grid item md={12}>
-      <Grid item>{letter}</Grid>
-      <Grid container>{renderSortedProfileCards(users)}</Grid>
-    </Grid>
+    <div className={classes.root}>
+      <div>{letter.toUpperCase()}</div>
+      <div className={classes.profileCards}>
+        {renderSortedProfileCards(users)}
+      </div>
+    </div>
   );
 }
 
