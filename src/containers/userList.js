@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchUsers, sortByCity } from "../actions/index";
+import { fetchUsers, sortByCity, sortByLastName } from "../actions/index";
 
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
@@ -12,13 +12,13 @@ import Button from "material-ui/Button";
 
 import ProfileCard from "../components/userProfileCard";
 import UserProfile from "../components/userProfile";
+import SectionProfile from "../components/userSection";
 
 const styles = theme => ({
   root: {
     // flexGrow: 1,
     paddingTop: 75
   },
-  paper: {},
   control: {
     padding: theme.spacing.unit * 2
   },
@@ -30,40 +30,31 @@ const styles = theme => ({
 });
 
 class UserList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isFilteredByCity: false };
+    this.handleClick = this.handleClick.bind(this);
+  }
   componentWillMount() {
     this.props.fetchUsers();
   }
 
-  renderSortedProfileCards() {
-    return this.props.users.users.map(user => {
-      let { firstName, lastName, address, phone, email, avatar, id } = user;
-      return (
-        <ProfileCard
-          key={id}
-          firstName={firstName}
-          lastName={lastName}
-          address={address}
-          phone={phone}
-          email={email}
-          avatar={avatar}
-        />
-      );
-    });
+  handleClick() {
+    this.state.isFilteredByCity
+      ? this.props.sortByLastName()
+      : this.props.sortByCity();
+    this.setState(prevState => ({
+      isFilteredByCity: !prevState.isFilteredByCity
+    }));
   }
 
-  renderProfileCards() {
-    return this.props.users.users.map(user => {
-      let { firstName, lastName, address, phone, email, avatar, id } = user;
-
+  renderSectionCards() {
+    return Object.keys(this.props.users.sortedUsers).map(section => {
       return (
-        <ProfileCard
-          key={id}
-          firstName={firstName}
-          lastName={lastName}
-          address={address}
-          phone={phone}
-          email={email}
-          avatar={avatar}
+        <SectionProfile
+          key={section}
+          letter={section}
+          users={this.props.users.sortedUsers[section]}
         />
       );
     });
@@ -71,26 +62,18 @@ class UserList extends Component {
 
   render() {
     const { classes } = this.props;
-    const { users } = this.props;
     return (
       <div style={{ padding: 30 }}>
         <Button
-          onClick={this.props.sortByCity}
+          onClick={this.handleClick}
           variant="raised"
           color="secondary"
           className={classes.button}
         >
-          Filter by City
+          Sort by {this.state.isFilteredByCity ? "Name" : "City"}
         </Button>
-        <Grid
-          container
-          className={classes.root}
-          spacing={40}
-          alignItems="center"
-          direction="row"
-          justify="center"
-        >
-          {this.renderSortedProfileCards()}
+        <Grid container className={classes.root} spacing={40} direction="row">
+          {this.renderSectionCards()}
         </Grid>
       </div>
     );
@@ -98,11 +81,16 @@ class UserList extends Component {
 }
 
 function mapStateToProps(state) {
-  return { users: state.users };
+  return {
+    users: state.users
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchUsers, sortByCity }, dispatch);
+  return bindActionCreators(
+    { fetchUsers, sortByCity, sortByLastName },
+    dispatch
+  );
 }
 
 const styledUserList = withStyles(styles)(UserList);

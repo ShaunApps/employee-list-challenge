@@ -24,16 +24,14 @@ export const fetchUsers = () => {
         error => console.log("An error occured.", error)
       )
       .then(json => dispatch(receiveUsers(json)))
-      .then(json => dispatch(sortByLastName(json)));
+      .then(json => dispatch(sortByLastName()));
   };
 };
 
 export const SORT_BY_LAST_NAME = "SORT_BY_LAST_NAME";
-function sortByLastName(json) {
-  console.log("action sorted: " + json.data);
+export function sortByLastName() {
   return {
-    type: SORT_BY_LAST_NAME,
-    users: json
+    type: SORT_BY_LAST_NAME
   };
 }
 
