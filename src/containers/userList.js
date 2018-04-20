@@ -5,14 +5,9 @@ import { fetchUsers, sortByLastName, filterByCity } from "../actions/index";
 
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import Paper from "material-ui/Paper";
-import Grid from "material-ui/Grid";
-import Avatar from "material-ui/Avatar";
-import Button from "material-ui/Button";
+
 import TextField from "material-ui/TextField";
 
-import ProfileCard from "../components/userProfileCard";
-import UserProfile from "../components/userProfile";
 import SectionProfile from "../components/userSection";
 import Icon from "material-ui/Icon";
 import IconButton from "material-ui/IconButton";

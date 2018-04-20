@@ -7,7 +7,7 @@ import { createMuiTheme, MuiThemeProvider } from "material-ui/styles";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import thunkMiddleware from "redux-thunk";
 

@@ -3,10 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ComponentUserProfile from "../components/userProfile";
 import { fetchUser } from "../actions/index";
-
 import { withStyles } from "material-ui/styles";
-import { Divider } from "material-ui";
-import Button from "material-ui/Button";
 
 const styles = theme => ({
   root: {},
@@ -36,8 +33,6 @@ class UserProfile extends Component {
 
   render() {
     const { classes } = this.props;
-    const { pathname } = this.props.location;
-
     return (
       <div className={classes.root}>
         <div>{this.renderUserProfile()}</div>
