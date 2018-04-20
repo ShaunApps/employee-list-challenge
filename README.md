@@ -16,6 +16,10 @@ Make sure to have `npm` installed if you don't already:
 
 Open http://localhost:3000 to view it in the browser if it doesn't open automatically.
 
+### Additional Success Criteria
+
+* Responsiveness for List and Detail page
+* Filtering by city is done locally from state
 
 This project utilized the following technologies to create:
 
