@@ -22,12 +22,10 @@ const store = createStoreWithMiddleware(
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#ffb300",
-      contrastText: "#fff"
+      main: "#212121"
     },
     secondary: {
-      main: "#546e7a",
-      contrastText: "#000"
+      main: "#00bfa5"
     }
   }
 });

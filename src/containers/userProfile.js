@@ -6,11 +6,10 @@ import { fetchUser } from "../actions/index";
 
 import { withStyles } from "material-ui/styles";
 import { Divider } from "material-ui";
+import Button from "material-ui/Button";
 
 const styles = theme => ({
-  root: {
-    paddingTop: 75
-  },
+  root: {},
   control: {
     padding: theme.spacing.unit * 2
   },
@@ -32,43 +31,24 @@ class UserProfile extends Component {
   }
 
   renderUserProfile() {
-    let {
-      firstName,
-      lastName,
-      phone,
-      email,
-      address,
-      avatar,
-      id,
-      tags,
-      dob
-    } = this.props.user.user;
-    return (
-      <ComponentUserProfile
-        firstName={firstName}
-        lastName={lastName}
-        address={address}
-        phone={phone}
-        email={email}
-        avatar={avatar}
-        id={id}
-        tags={tags}
-        dob={dob}
-      />
-    );
+    return <ComponentUserProfile user={this.props.user} />;
   }
 
   render() {
     const { classes } = this.props;
     const { pathname } = this.props.location;
 
-    return <div>{this.renderUserProfile()}</div>;
+    return (
+      <div className={classes.root}>
+        <div>{this.renderUserProfile()}</div>
+      </div>
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    ...state.user
   };
 }
 

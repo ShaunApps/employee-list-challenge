@@ -14,8 +14,11 @@ import TextField from "material-ui/TextField";
 import ProfileCard from "../components/userProfileCard";
 import UserProfile from "../components/userProfile";
 import SectionProfile from "../components/userSection";
+import Icon from "material-ui/Icon";
+import IconButton from "material-ui/IconButton";
 
 const styles = theme => ({
+  rootMaster: { backgroundColor: "#FAFAFA" },
   root: {
     paddingTop: 75,
     display: "flex",
@@ -27,9 +30,9 @@ const styles = theme => ({
     height: 100
   },
   textField: {},
-  button: {},
   formContainer: {
-    display: "flex"
+    display: "flex",
+    marginLeft: 25
   }
 });
 
@@ -73,25 +76,23 @@ class UserList extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div style={{ padding: 30 }}>
-        <form onSubmit={this.handleClick} className={classes.formContainer}>
-          <TextField
-            id="city"
-            label="City"
-            className={classes.textField}
-            onChange={this.handleChange}
-            margin="normal"
-          />
-          <Button
-            onClick={this.handleClick}
-            variant="raised"
-            color="secondary"
-            className={classes.button}
-          >
-            Filter by City
-          </Button>
-        </form>
+      <div style={{ padding: 15 }} className={classes.rootMaster}>
+        <div className={classes.formContainer}>
+          <form onSubmit={this.handleClick}>
+            <TextField
+              id="city"
+              label="City"
+              placeholder="Enter city name here "
+              className={classes.textField}
+              onChange={this.handleChange}
+              margin="normal"
+            />
 
+            <IconButton onClick={this.handleClick}>
+              <Icon>filter_list</Icon>
+            </IconButton>
+          </form>
+        </div>
         <div className={classes.root}>{this.renderSectionCards()}</div>
       </div>
     );

@@ -7,7 +7,11 @@ export default function(state = INITIAL_STATE, action) {
     case REQUEST_USER:
       return { ...state, isFetchingFee: true };
     case RECEIVE_USER:
-      return { ...state, isFetchingFee: false, user: action.user };
+      return {
+        ...state,
+        isFetchingFee: false,
+        user: action.user
+      };
     default:
       return state;
   }

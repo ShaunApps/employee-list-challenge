@@ -4,41 +4,51 @@ import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Avatar from "material-ui/Avatar";
 import Typography from "material-ui/Typography";
+import { phoneNumber, formatEmail } from "../helpers/index";
 
 import { Link } from "react-router-dom";
 
 const styles = theme => ({
   paperRoot: {
-    padding: 10,
-    width: 700,
-    height: 250,
+    padding: 15,
+    margin: 15,
+    // width: 700,
+    // height: 250,
     flexShrink: 1
   },
   avatar: {
     margin: 10,
     width: 150,
-    height: 150
+    height: 150,
+    borderStyle: "solid",
+    color: "#263238"
   },
   info: {
     margin: 5
   },
   root: {
-    margin: 20,
+    // margin: 20,
     display: "flex"
   },
   innerRoot: {
     display: "flex",
-    justifyContent: "space-around",
-    alignItems: "center"
+    justifyContent: "space-betweem",
+    alignItems: "center",
+    margin: 10,
+    padding: 10
   },
   avatarWrap: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    margin: 5,
+    marginRight: 40
   },
   infoWrap: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    margin: 5,
+    marginLeft: 40
   }
 });
 
@@ -61,10 +71,14 @@ function ProfileCards(props) {
                 >{`${firstName} ${lastName}`}</Typography>
               </div>
               <div>
-                <Typography gutterBottom>Email: {email}</Typography>
+                <Typography noWrap gutterBottom>
+                  Email: {formatEmail(email)}
+                </Typography>
               </div>
               <div>
-                <Typography gutterBottom>Phone: {phone}</Typography>
+                <Typography gutterBottom>
+                  Phone: {phoneNumber(phone)}
+                </Typography>
               </div>
               <div>
                 <Typography gutterBottom>City: {address.city}</Typography>

@@ -8,25 +8,24 @@ const styles = theme => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    justify: "center",
-    alignItems: "flex-start"
-  },
-  profiles: {
-    direction: "row",
-    justify: "flex-start",
-    flexGrow: 1
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    marginBottom: 45
   },
   letter: {
     margin: 5,
     fontSize: 12
   },
   letterSection: {
-    marginBottom: 100
+    display: "flex",
+    justifyContent: "space-evenly",
+    marginLeft: 18
   },
   profileCards: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap"
+    // justifyContent: "space-evenly"
   }
 });
 
@@ -55,8 +54,10 @@ function SectionProfile(props) {
   const { letter, users } = props;
   return (
     <div className={classes.root}>
-      <div>{letter.toUpperCase()}</div>
-      <div className={classes.profileCards}>
+      <div xs={12} md={12} className={classes.letterSection}>
+        <div>{letter.toUpperCase()}</div>
+      </div>
+      <div xs={12} md={12} className={classes.profileCards}>
         {renderSortedProfileCards(users)}
       </div>
     </div>

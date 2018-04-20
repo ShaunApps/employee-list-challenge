@@ -11,7 +11,8 @@ import { Link } from "react-router-dom";
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    color: "#f9a825"
   },
   flex: {
     flex: 1
@@ -26,16 +27,20 @@ function ButtonAppBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar color="primary" position="static">
         <Toolbar>
           <IconButton
             className={classes.menuButton}
             color="inherit"
             aria-label="Menu"
           />
-          <Typography variant="title" color="inherit" className={classes.flex}>
+          <Typography
+            variant="headline"
+            color="secondary"
+            className={classes.flex}
+          >
             <Link to="/" style={{ textDecoration: "none" }}>
-              Starmark
+              Widgets Inc
             </Link>
           </Typography>
         </Toolbar>
