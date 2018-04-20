@@ -52,7 +52,17 @@ const styles = theme => ({
 });
 
 function ProfilePage(props) {
-  let { firstName, lastName, phone, email, avatar, id, dob, tags } = props.user;
+  let {
+    firstName,
+    lastName,
+    phone,
+    email,
+    avatar,
+    id,
+    dob,
+    tags,
+    username
+  } = props.user;
   const { classes } = props;
 
   return (
@@ -75,6 +85,11 @@ function ProfilePage(props) {
                 variant="headline"
                 gutterBottom
               >{`${firstName} ${lastName}`}</Typography>
+            </div>
+            <div>
+              <Typography variant="subheading" gutterBottom>
+                Username: {username}
+              </Typography>
             </div>
             <div>
               <Typography gutterBottom>Phone: {phoneNumber(phone)}</Typography>
