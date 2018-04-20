@@ -17,8 +17,8 @@ import {
 
 const styles = theme => ({
   paperRoot: {
-    padding: 30,
-    margin: 75,
+    padding: 25,
+    marginTop: 10,
     maxWidth: 600,
     display: "flex",
     alignItems: "center"
@@ -37,8 +37,8 @@ const styles = theme => ({
   },
   innerRoot: {
     display: "flex",
-    justifyContent: "space-around",
-    marginTop: 10
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   avatarWrap: {
     display: "flex",
@@ -81,7 +81,9 @@ function ProfilePage(props) {
               <Typography gutterBottom>Phone: {phoneNumber(phone)}</Typography>
             </div>
             <div>
-              <Typography gutterBottom>Email: {formatEmail(email)}</Typography>
+              <Typography noWrap gutterBottom>
+                Email: {formatEmail(email)}
+              </Typography>
             </div>
             {/* <div>
               <Typography gutterBottom>City: {address.city}</Typography>

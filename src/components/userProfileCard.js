@@ -32,7 +32,7 @@ const styles = theme => ({
   },
   innerRoot: {
     display: "flex",
-    justifyContent: "space-betweem",
+    justifyContent: "space-between",
     alignItems: "center",
     margin: 10,
     padding: 10
